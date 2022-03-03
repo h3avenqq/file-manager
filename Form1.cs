@@ -176,7 +176,14 @@ namespace file_manager
         {
             try
             {
-                Directory.Delete(path,true);
+                if (file)
+                {
+                    File.Delete(path);
+                }
+                else
+                {
+                    Directory.Delete(path,true);
+                }
                 treeView.Refresh();
             }
             catch (Exception ex) {
@@ -277,8 +284,10 @@ namespace file_manager
             FileInfo fileInfo = new FileInfo(path);
             if (fileInfo.Exists)
             {
-                MessageBox.Show($"Время создания: {fileInfo.CreationTime} \nРазмер: " +
-                    $"{Math.Round(fileInfo.Length / 1024.0 / 1024.0,1)} МБ");
+                MessageBox.Show($"Date of creation: {fileInfo.CreationTime}\n" +
+                    $"Size: {Math.Round(fileInfo.Length / 1024f/1024f,2)} MB\n" +
+                    $"Extension: {fileInfo.Extension}\n" +
+                    $"Last modified: {fileInfo.LastWriteTime}");
             }
         }
     }
