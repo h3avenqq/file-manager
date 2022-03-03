@@ -271,5 +271,15 @@ namespace file_manager
                 CopyFolder(subdir.FullName, tempPath);
             }
         }
+
+        private void toolStripMenuItemInfo_Click(object sender, EventArgs e)
+        {
+            FileInfo fileInfo = new FileInfo(path);
+            if (fileInfo.Exists)
+            {
+                MessageBox.Show($"Время создания: {fileInfo.CreationTime} \nРазмер: " +
+                    $"{Math.Round(fileInfo.Length / 1024.0 / 1024.0,1)} МБ");
+            }
+        }
     }
 }
