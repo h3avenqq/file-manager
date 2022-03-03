@@ -14,8 +14,8 @@ namespace file_manager
 {
     public partial class Form1 : Form
     {
-        private string inputBoxMsg = "Введите имя файла:";
-        private string inputBoxTitle = "Переименовывание";
+        private string inputBoxMsg = "Enter file name:";
+        private string inputBoxTitle = "Rename";
 
         private string path;
         private string copyFilePath;
@@ -152,7 +152,6 @@ namespace file_manager
         private void treeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             path = e.Node.FullPath;
-            CheckFlag();
         }
 
         private void toolStripMenuRename_Click(object sender, EventArgs e)
@@ -200,7 +199,6 @@ namespace file_manager
                 else
                     CopyOrMoveFolder();
 
-                treeView.Refresh();
             }
             catch (Exception ex)
             {
@@ -211,12 +209,16 @@ namespace file_manager
         private void toolStripMenuCopy_Click(object sender, EventArgs e)
         {
             copyFilePath = path;
+            CheckFlag();
+
             move = false;
         }
 
         private void toolStripMenuCut_Click(object sender, EventArgs e)
         {
             copyFilePath = path;
+            CheckFlag();
+
             move = true;
         }
 
@@ -253,7 +255,7 @@ namespace file_manager
             }
             else
             {
-                CopyFolder(copyFilePath,path);
+                CopyFolder(copyFilePath,path+"\\");
             }
         }
 
