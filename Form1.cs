@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,10 +23,23 @@ namespace file_manager
 
         private bool move = false;
         private bool file = false;
+
+        Thread checkMemoryThread;
+
         public Form1()
         {
             InitializeComponent();
-            
+            CheckMemory checkMemory = new CheckMemory(pbFreeSpaceC, pbFreeSpaceD, txtFreeSpaceC, txtFreeSpaceD, txtPercentC, txtPercentD);
+
+            checkMemoryThread = new Thread(checkMemory.UpdateMemory);
+
+            checkMemoryThread.IsBackground = true;
+            checkMemoryThread.Priority = ThreadPriority.Lowest;
+
+            checkMemoryThread.Start();
+
+            comboBox1.SelectedIndex = 4;
+
             FillDriveNodes();
         }
 
@@ -177,7 +191,7 @@ namespace file_manager
             {
                 if (file)
                 {
-                    File.Delete(path);
+                    File.Delete(path);//fix it (wrong path?)
                 }
                 else
                 {
@@ -255,7 +269,7 @@ namespace file_manager
             }
             else
             {
-                CopyFolder(copyFilePath,path+"\\");
+                CopyFolder(copyFilePath, path + "\\");
             }
         }
 
@@ -290,6 +304,35 @@ namespace file_manager
                     $"Size: {Math.Round(fileInfo.Length / 1024f/1024f,2)} MB\n" +
                     $"Extension: {fileInfo.Extension}\n" +
                     $"Last modified: {fileInfo.LastWriteTime}");
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedIndex == 0)
+            {
+                checkMemoryThread.Priority = ThreadPriority.Highest;
+            }
+            else if(comboBox1.SelectedIndex == 1)
+            {
+                checkMemoryThread.Priority = ThreadPriority.AboveNormal;
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                checkMemoryThread.Priority = ThreadPriority.Normal;
+            }
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                checkMemoryThread.Priority = ThreadPriority.BelowNormal;
+            }
+            else if (comboBox1.SelectedIndex == 4)
+            {
+                checkMemoryThread.Priority = ThreadPriority.Lowest;
             }
         }
     }
