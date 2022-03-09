@@ -50,7 +50,7 @@ namespace file_manager
                 catch(Exception ex)
                 {
                     //MessageBox.Show(ex.Message);
-                    continue;
+                    //continue;
                 }
                 Thread.Sleep(2 * 1000);
 
