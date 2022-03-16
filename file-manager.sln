@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "file-manager", "file-manager.csproj", "{0A6C1BC3-E84D-4B46-85AF-C8F8B23543C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadlineLibrary", "..\DeadlineLibrary\DeadlineLibrary.csproj", "{EA685EF5-4352-4B03-8F39-768E59DB3C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0A6C1BC3-E84D-4B46-85AF-C8F8B23543C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A6C1BC3-E84D-4B46-85AF-C8F8B23543C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A6C1BC3-E84D-4B46-85AF-C8F8B23543C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA685EF5-4352-4B03-8F39-768E59DB3C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA685EF5-4352-4B03-8F39-768E59DB3C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA685EF5-4352-4B03-8F39-768E59DB3C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA685EF5-4352-4B03-8F39-768E59DB3C97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

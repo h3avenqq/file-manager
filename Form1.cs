@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,20 +26,16 @@ namespace file_manager
         private bool file = false;
 
         Thread checkMemoryThread;
+        Thread deadlineThread;
+
+        Assembly assembly;
 
         public Form1()
         {
             InitializeComponent();
-            CheckMemory checkMemory = new CheckMemory(pbFreeSpaceC, pbFreeSpaceD, txtFreeSpaceC, txtFreeSpaceD, txtPercentC, txtPercentD);
 
-            checkMemoryThread = new Thread(checkMemory.UpdateMemory);
-
-            checkMemoryThread.IsBackground = true;
-            checkMemoryThread.Priority = ThreadPriority.Lowest;
-
-            checkMemoryThread.Start();
-
-            comboBox1.SelectedIndex = 4;
+            CheckMemory();
+            DeadlineCheck();
 
             FillDriveNodes();
         }
@@ -334,6 +331,56 @@ namespace file_manager
             {
                 checkMemoryThread.Priority = ThreadPriority.Lowest;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckMemory()
+        {
+            CheckMemory checkMemory = new CheckMemory(pbFreeSpaceC, pbFreeSpaceD, txtFreeSpaceC, txtFreeSpaceD, txtPercentC, txtPercentD);
+
+            checkMemoryThread = new Thread(checkMemory.UpdateMemory);
+
+            checkMemoryThread.IsBackground = true;
+            checkMemoryThread.Priority = ThreadPriority.Lowest;
+
+            checkMemoryThread.Start();
+
+            comboBox1.SelectedIndex = 4;
+        }
+
+        private void Deadline()
+        {
+            assembly = Assembly.LoadFile(@"D:\Projects\ISA\DeadlineLibrary\bin\Debug\DeadlineLibrary.dll");
+            var type = assembly.GetType("DeadlineLibrary.Deadline");
+            var obj = assembly.CreateInstance("DeadlineLibrary.Deadline");
+            var method = type.GetMethod("UpdateTime");
+
+            var deadline = method.Invoke(obj, new object[] { new DateTime(2022,03,17) });
+            while (true)
+            {
+                txtDeadline.Text = deadline.ToString();
+                Thread.Sleep(60 * 1000);
+            }
+        }
+
+        private void DeadlineCheck()
+        {
+            deadlineThread = new Thread(Deadline);
+
+            deadlineThread.IsBackground = true;
+            deadlineThread.Priority = ThreadPriority.Lowest;
+
+            deadlineThread.Start();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            assembly = null;
+            GC.Collect();
         }
     }
 }
