@@ -53,15 +53,22 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab1 = new System.Windows.Forms.TabPage();
+            this.tab2 = new System.Windows.Forms.TabPage();
+            this.btnStart = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tab1.SuspendLayout();
+            this.tab2.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView
             // 
             this.treeView.ContextMenuStrip = this.contextMenuStrip;
-            this.treeView.Location = new System.Drawing.Point(3, 95);
+            this.treeView.Location = new System.Drawing.Point(3, 93);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(470, 343);
+            this.treeView.Size = new System.Drawing.Size(458, 322);
             this.treeView.TabIndex = 0;
             this.treeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView_BeforeExpand);
             this.treeView.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView_BeforeSelect);
@@ -153,14 +160,14 @@
             // 
             // pbFreeSpaceC
             // 
-            this.pbFreeSpaceC.Location = new System.Drawing.Point(172, 13);
+            this.pbFreeSpaceC.Location = new System.Drawing.Point(168, 8);
             this.pbFreeSpaceC.Name = "pbFreeSpaceC";
             this.pbFreeSpaceC.Size = new System.Drawing.Size(242, 23);
             this.pbFreeSpaceC.TabIndex = 1;
             // 
             // pbFreeSpaceD
             // 
-            this.pbFreeSpaceD.Location = new System.Drawing.Point(172, 42);
+            this.pbFreeSpaceD.Location = new System.Drawing.Point(168, 37);
             this.pbFreeSpaceD.Name = "pbFreeSpaceD";
             this.pbFreeSpaceD.Size = new System.Drawing.Size(242, 23);
             this.pbFreeSpaceD.TabIndex = 2;
@@ -169,39 +176,43 @@
             // 
             this.txtFreeSpaceC.AutoSize = true;
             this.txtFreeSpaceC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtFreeSpaceC.Location = new System.Drawing.Point(-1, 16);
+            this.txtFreeSpaceC.Location = new System.Drawing.Point(-4, 11);
             this.txtFreeSpaceC.MaximumSize = new System.Drawing.Size(200, 50);
             this.txtFreeSpaceC.Name = "txtFreeSpaceC";
-            this.txtFreeSpaceC.Size = new System.Drawing.Size(0, 20);
+            this.txtFreeSpaceC.Size = new System.Drawing.Size(80, 20);
             this.txtFreeSpaceC.TabIndex = 3;
+            this.txtFreeSpaceC.Text = "diskspace";
             // 
             // txtFreeSpaceD
             // 
             this.txtFreeSpaceD.AutoSize = true;
             this.txtFreeSpaceD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtFreeSpaceD.Location = new System.Drawing.Point(-1, 42);
+            this.txtFreeSpaceD.Location = new System.Drawing.Point(-4, 37);
             this.txtFreeSpaceD.MaximumSize = new System.Drawing.Size(200, 50);
             this.txtFreeSpaceD.Name = "txtFreeSpaceD";
-            this.txtFreeSpaceD.Size = new System.Drawing.Size(0, 20);
+            this.txtFreeSpaceD.Size = new System.Drawing.Size(80, 20);
             this.txtFreeSpaceD.TabIndex = 4;
+            this.txtFreeSpaceD.Text = "diskspace";
             // 
             // txtPercentC
             // 
             this.txtPercentC.AutoSize = true;
             this.txtPercentC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtPercentC.Location = new System.Drawing.Point(420, 13);
+            this.txtPercentC.Location = new System.Drawing.Point(416, 8);
             this.txtPercentC.Name = "txtPercentC";
-            this.txtPercentC.Size = new System.Drawing.Size(0, 17);
+            this.txtPercentC.Size = new System.Drawing.Size(36, 17);
             this.txtPercentC.TabIndex = 5;
+            this.txtPercentC.Text = "perc";
             // 
             // txtPercentD
             // 
             this.txtPercentD.AutoSize = true;
             this.txtPercentD.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtPercentD.Location = new System.Drawing.Point(420, 42);
+            this.txtPercentD.Location = new System.Drawing.Point(416, 43);
             this.txtPercentD.Name = "txtPercentD";
-            this.txtPercentD.Size = new System.Drawing.Size(0, 17);
+            this.txtPercentD.Size = new System.Drawing.Size(36, 17);
             this.txtPercentD.TabIndex = 6;
+            this.txtPercentD.Text = "perc";
             // 
             // comboBox1
             // 
@@ -212,7 +223,7 @@
             "Normal",
             "BelowNormal",
             "Lowest"});
-            this.comboBox1.Location = new System.Drawing.Point(293, 68);
+            this.comboBox1.Location = new System.Drawing.Point(289, 66);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 7;
@@ -221,52 +232,103 @@
             // txtDeadline
             // 
             this.txtDeadline.AutoSize = true;
-            this.txtDeadline.Location = new System.Drawing.Point(209, 76);
+            this.txtDeadline.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtDeadline.Location = new System.Drawing.Point(95, 137);
+            this.txtDeadline.Margin = new System.Windows.Forms.Padding(2, 0, 3, 0);
+            this.txtDeadline.MaximumSize = new System.Drawing.Size(10000, 100);
             this.txtDeadline.Name = "txtDeadline";
-            this.txtDeadline.Size = new System.Drawing.Size(35, 13);
+            this.txtDeadline.Size = new System.Drawing.Size(114, 26);
             this.txtDeadline.TabIndex = 8;
-            this.txtDeadline.Text = "label1";
+            this.txtDeadline.Text = "PressStart";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 71);
+            this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dateTimePicker1.Location = new System.Drawing.Point(100, 166);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(260, 20);
             this.dateTimePicker1.TabIndex = 9;
-            this.dateTimePicker1.Visible = false;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(420, 66);
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(227, 192);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(25, 23);
+            this.btnCancel.Size = new System.Drawing.Size(84, 23);
             this.btnCancel.TabIndex = 10;
-            this.btnCancel.Text = "x";
+            this.btnCancel.Text = "Disable";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tab1);
+            this.tabControl1.Controls.Add(this.tab2);
+            this.tabControl1.Location = new System.Drawing.Point(1, 1);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(472, 449);
+            this.tabControl1.TabIndex = 11;
+            // 
+            // tab1
+            // 
+            this.tab1.Controls.Add(this.pbFreeSpaceC);
+            this.tab1.Controls.Add(this.treeView);
+            this.tab1.Controls.Add(this.txtFreeSpaceD);
+            this.tab1.Controls.Add(this.txtPercentD);
+            this.tab1.Controls.Add(this.txtFreeSpaceC);
+            this.tab1.Controls.Add(this.pbFreeSpaceD);
+            this.tab1.Controls.Add(this.txtPercentC);
+            this.tab1.Controls.Add(this.comboBox1);
+            this.tab1.Location = new System.Drawing.Point(4, 22);
+            this.tab1.Name = "tab1";
+            this.tab1.Padding = new System.Windows.Forms.Padding(3);
+            this.tab1.Size = new System.Drawing.Size(464, 423);
+            this.tab1.TabIndex = 0;
+            this.tab1.Text = "File Manager";
+            this.tab1.UseVisualStyleBackColor = true;
+            // 
+            // tab2
+            // 
+            this.tab2.Controls.Add(this.btnStart);
+            this.tab2.Controls.Add(this.dateTimePicker1);
+            this.tab2.Controls.Add(this.btnCancel);
+            this.tab2.Controls.Add(this.txtDeadline);
+            this.tab2.Location = new System.Drawing.Point(4, 22);
+            this.tab2.Name = "tab2";
+            this.tab2.Padding = new System.Windows.Forms.Padding(3);
+            this.tab2.Size = new System.Drawing.Size(464, 423);
+            this.tab2.TabIndex = 1;
+            this.tab2.Text = "Deadline";
+            this.tab2.UseVisualStyleBackColor = true;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(144, 192);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(84, 23);
+            this.btnStart.TabIndex = 11;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 450);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.txtDeadline);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.txtPercentD);
-            this.Controls.Add(this.txtPercentC);
-            this.Controls.Add(this.txtFreeSpaceD);
-            this.Controls.Add(this.txtFreeSpaceC);
-            this.Controls.Add(this.pbFreeSpaceD);
-            this.Controls.Add(this.pbFreeSpaceC);
-            this.Controls.Add(this.treeView);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "File Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tab1.ResumeLayout(false);
+            this.tab1.PerformLayout();
+            this.tab2.ResumeLayout(false);
+            this.tab2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -296,6 +358,10 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tab1;
+        private System.Windows.Forms.TabPage tab2;
+        private System.Windows.Forms.Button btnStart;
     }
 }
 

@@ -24,9 +24,12 @@ namespace file_manager
 
         private bool move = false;
         private bool file = false;
+        private bool deadlineflag = true;
 
-        Thread checkMemoryThread;
-        Thread deadlineThread;
+        private Thread checkMemoryThread;
+        private Thread deadlineThread;
+
+        private DateTime deadlineTime;
 
         Assembly assembly;
 
@@ -35,7 +38,6 @@ namespace file_manager
             InitializeComponent();
 
             CheckMemory();
-            DeadlineCheck();
 
             FillDriveNodes();
         }
@@ -359,11 +361,10 @@ namespace file_manager
             var obj = assembly.CreateInstance("DeadlineLibrary.Deadline");
             var method = type.GetMethod("UpdateTime");
 
-            var deadline = method.Invoke(obj, new object[] { new DateTime(2022,03,17) });
-            while (true)
+            while (deadlineflag)
             {
-                txtDeadline.Text = deadline.ToString();
-                Thread.Sleep(60 * 1000);
+                txtDeadline.Text = method.Invoke(obj, new object[] { deadlineTime }).ToString();
+                Thread.Sleep(1000);
             }
         }
 
@@ -379,8 +380,27 @@ namespace file_manager
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            deadlineflag = false;
+            btnCancel.Enabled = false;
+            btnStart.Enabled = true;
+            txtDeadline.Text = "Press Start";
+            deadlineThread.Abort();
             assembly = null;
             GC.Collect();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            deadlineTime = dateTimePicker1.Value;
+            deadlineflag = true;
+            btnStart.Enabled = false;
+            btnCancel.Enabled = true;
+            DeadlineCheck();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            deadlineTime = dateTimePicker1.Value;
         }
     }
 }
