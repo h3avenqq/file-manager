@@ -39,6 +39,8 @@ namespace file_manager
 
             CheckMemory();
 
+            dateTimePicker1.MinDate = DateTime.Now.Add(new TimeSpan(1, 0, 0, 0));
+
             FillDriveNodes();
         }
 

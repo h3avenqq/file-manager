@@ -245,6 +245,7 @@
             // 
             this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Default;
             this.dateTimePicker1.Location = new System.Drawing.Point(100, 166);
+            this.dateTimePicker1.MinDate = new System.DateTime(2022, 3, 16, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(260, 20);
             this.dateTimePicker1.TabIndex = 9;
